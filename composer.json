@@ -1,0 +1,14 @@
+{
+    "name": "OEHWU/Header",
+    "authors": [
+        {
+            "name": "Thomas Rieschl",
+            "email": "thomas.rieschl@oeh-wu.at"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "OEHWU\\Header\\": "src"
+        }
+    }
+}
