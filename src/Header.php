@@ -14,10 +14,10 @@ class Header
     /**
      * URI to fetch
      */
-    const headerUrl = 'https://oeh-wu.at/snippets/header.html';
+    const HEADER_URL = 'https://oeh-wu.at/snippets/header.html';
 
     /**
-     * returns the header HTML as string or null if it fails
+     * returns the header HTML as string, or null if it fails
      *
      * @return string|null
      */
@@ -30,7 +30,7 @@ class Header
         $c = curl_init();
 
         curl_setopt($c, CURLOPT_HTTPGET, 1);
-        curl_setopt($c, CURLOPT_URL, self::headerUrl);
+        curl_setopt($c, CURLOPT_URL, self::HEADER_URL);
         curl_setopt($c, CURLOPT_AUTOREFERER, 1);
         curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($c, CURLOPT_SSL_VERIFYHOST, 0);
