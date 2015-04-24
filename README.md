@@ -2,10 +2,10 @@
 
 small class to include the common OEH WU header
 
-## composer support
+## Installation: composer support
     {
         "require": {
-            "OEHWU/Header": "dev-master"
+            "OEHWU/Header": "~1.0"
         },
         "repositories": [
             {
@@ -14,3 +14,10 @@ small class to include the common OEH WU header
             }
         ]
     }
+
+## Usage
+This package implements one public static method:
+
+    OEHWU\Header\Header::getHeader()
+
+The method returns the Header HTML `string` to be `echo`ed. The *cURL* library has to be installed. Otherwise the method silently fails and returns `null`.
