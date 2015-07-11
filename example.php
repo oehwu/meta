@@ -6,6 +6,12 @@ require_once 'src/Header.php';
 <head>
     <meta charset="utf-8">
     <title>OEH WU Header</title>
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
 </head>
 
 <body>

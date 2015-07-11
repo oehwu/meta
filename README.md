@@ -20,4 +20,7 @@ This package implements one public static method:
 
     OEHWU\Header\Header::getHeader()
 
-The method returns the Header HTML `string` to be `echo`ed. The *cURL* library has to be installed. Otherwise the method silently fails and returns `null`.
+The method returns the Header HTML `string` to be `echo`ed.
+It should be used right after the opening `<body>` tag, with `<body>`'s margin and padding set to `0`.
+
+The *cURL* library has to be installed. Otherwise the method silently fails and returns `null`.
