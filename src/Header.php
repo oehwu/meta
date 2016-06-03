@@ -104,7 +104,7 @@ class Header
     {
         $fileName = self::getFileName();
 
-        if (!is_writable($fileName)) {
+        if (!is_writable(sys_get_temp_dir())) {
             return;
         }
 
