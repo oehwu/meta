@@ -23,8 +23,9 @@ class Header
 
     /**
      * @var int cache time in seconds
+     * 24 * 60 * 60; one day
      */
-    const CACHE_TIME = 24 * 60 * 60;
+    const CACHE_TIME = 86400;
 
     /**
      * returns the header HTML as string, or null if it fails
@@ -91,6 +92,7 @@ class Header
 
         if (filemtime($fileName) + self::CACHE_TIME < time()) {
             unlink($fileName);
+
             return null;
         }
 
