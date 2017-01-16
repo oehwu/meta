@@ -5,7 +5,7 @@ small support classes
 ## Installation: composer support
     {
         "require": {
-            "oehwu/meta": "~1.0"
+            "oehwu/meta": "~2.0"
         },
         "repositories": [
             {
