@@ -1,16 +1,11 @@
 <?php
-namespace OEHWU\Header;
+namespace OEHWU\Meta;
 
 /**
- * Class Header
- *
  * Returns the OEH WU header
- *
- * @package OEHWU\Header
  */
 class Header
 {
-
     /**
      * @var string URI to fetch
      */

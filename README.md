@@ -1,24 +1,24 @@
-# OEH WU Header
+# OEH WU Meta
 
-small class to include the common OEH WU header
+small support classes 
 
 ## Installation: composer support
     {
         "require": {
-            "OEHWU/Header": "~1.0"
+            "oehwu/meta": "~1.0"
         },
         "repositories": [
             {
                 "type": "vcs",
-                "url": "https://git.oeh-wu.at/header.git"
+                "url": "https://git.oeh-wu.at/oehwu/meta.git"
             }
         ]
     }
 
-## Usage
+## Usage: Header
 This package implements one public static method:
 
-    OEHWU\Header\Header::getHeader()
+    OEHWU\Meta\Header::getHeader()
 
 The method returns the Header HTML `string` to be `echo`ed.
 It should be used right after the opening `<body>` tag, with `<body>`'s margin and padding set to `0`.

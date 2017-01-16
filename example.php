@@ -16,7 +16,7 @@ require_once 'src/Header.php';
 
 <body>
 
-<?= OEHWU\Header\Header::getHeader() ?>
+<?= OEHWU\Meta\Header::getHeader() ?>
 
 </body>
 </html>

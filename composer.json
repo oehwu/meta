@@ -1,5 +1,5 @@
 {
-    "name": "OEHWU/Header",
+    "name": "oehwu/meta",
     "authors": [
         {
             "name": "Thomas Rieschl",
@@ -7,11 +7,11 @@
         }
     ],
     "require": {
-        "php": ">=5.3.3"
+        "php": ">=5.5"
     },
     "autoload": {
         "psr-4": {
-            "OEHWU\\Header\\": "src"
+            "OEHWU\\Meta\\": "src"
         }
     }
 }
