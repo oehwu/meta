@@ -86,7 +86,7 @@ class Header
         }
 
         if (filemtime($fileName) + self::CACHE_TIME < time()) {
-            unlink($fileName);
+            self::deleteCacheFile($fileName);
 
             return null;
         }
@@ -116,5 +116,16 @@ class Header
     private static function getFileName()
     {
         return sys_get_temp_dir() . '/' . self::TMP_FILENAME;
+    }
+
+    /**
+     * @param $fileName
+     */
+    private static function deleteCacheFile($fileName)
+    {
+        if (!is_writable($fileName)) {
+            return;
+        }
+        unlink($fileName);
     }
 }
