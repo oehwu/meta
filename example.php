@@ -1,5 +1,5 @@
 <?php
-require_once 'src/Header.php';
+require_once __DIR__ . '/src/Header.php';
 ?>
 <!DOCTYPE html>
 <html>

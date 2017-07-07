@@ -1,4 +1,5 @@
 <?php
+
 namespace OEHWU\Meta;
 
 /**
@@ -105,7 +106,7 @@ class Header
             return;
         }
 
-        $res = fopen($fileName, 'w');
+        $res = fopen($fileName, 'wb');
         fwrite($res, $headerStr);
         fclose(($res));
     }
