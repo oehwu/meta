@@ -120,7 +120,7 @@ class Header
     }
 
     /**
-     * @param $fileName
+     * @param string $fileName
      */
     private static function deleteCacheFile($fileName)
     {

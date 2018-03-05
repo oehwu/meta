@@ -1,0 +1,17 @@
+image: php:7.1
+
+cache:
+  paths:
+  - vendor/
+
+before_script:
+- bash ci/docker_install.sh
+- curl --silent --show-error https://getcomposer.org/installer | php
+- php composer.phar install > /dev/null
+
+test:app:
+  script:
+  - ./vendor/bin/phpunit --coverage-text --colors=never
+  - ./vendor/bin/composer-require-checker
+  - ./vendor/bin/infection --only-covered --min-covered-msi=97
+  - ./vendor/bin/phpstan analyse src/ --level 7
