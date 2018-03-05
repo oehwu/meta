@@ -13,7 +13,7 @@ namespace OEHWU\Meta;
  *
  * @package OEHWU\Meta
  */
-final class CheckSSL
+class CheckSSL
 {
     /**
      * Returns true if the X-SSL-Request HTTP header is present, thus the client accessed the ressource using https://
