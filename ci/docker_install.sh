@@ -8,5 +8,6 @@ set -xe
 apt-get update -yqq
 apt-get install git wget -yqq
 
+docker-php-ext-install zip > /dev/null
 pecl install xdebug > /dev/null
 docker-php-ext-enable xdebug > /dev/null
