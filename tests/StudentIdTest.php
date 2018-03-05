@@ -29,6 +29,7 @@ class StudentIdTest extends TestCase
         // [studentId, ::isValid result, ::filter result, ::check result]
         return [
             ['h1234567', true, 'h1234567', 'h1234567'],
+            ['h8567890', true, 'h8567890', 'h8567890'],
             ['h02345678', true, 'h2345678', 'h2345678'],
             ['h12345678', true, 'h12345678', 'h12345678'],
             ['h22345678', true, 'h22345678', 'h22345678'],

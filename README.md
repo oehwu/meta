@@ -56,3 +56,14 @@ The method returns the Header HTML `string` to be `echo`ed.
 It should be used right after the opening `<body>` tag, with `<body>`'s margin and padding set to `0`.
 
 The *cURL* library has to be installed. Otherwise the method silently fails and returns `null`.
+
+## Usage: CheckSSL
+The package has two public static methods:
+
+    OEHWU\CheckSSL\CheckSSL::isSSL()
+
+Returns `bool` `true` or `false`.
+
+    OEHWU\CheckSSL\CheckSSL::redirect()
+
+Redirects the client to the SSL version of the current website, if not already there.
