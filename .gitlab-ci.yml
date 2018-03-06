@@ -13,5 +13,13 @@ test:app:
   script:
   - ./vendor/bin/phpunit --coverage-text --colors=never
   - ./vendor/bin/composer-require-checker
-  - ./vendor/bin/infection --only-covered --min-covered-msi=97
   - ./vendor/bin/phpstan analyse src/ --level 7
+  - ./vendor/bin/infection --only-covered --min-covered-msi=97
+
+test:php7.2:
+  image: php:7.2
+  script:
+  - ./vendor/bin/phpunit --coverage-text --colors=never
+  - ./vendor/bin/composer-require-checker
+  - ./vendor/bin/phpstan analyse src/ --level 7
+  - ./vendor/bin/infection --only-covered --min-covered-msi=97
