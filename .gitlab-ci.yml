@@ -14,4 +14,4 @@ test:app:
   - ./vendor/bin/phpunit --coverage-text --colors=never
   - ./vendor/bin/composer-require-checker
   - ./vendor/bin/phpstan analyse src/ --level 7
-  - ./vendor/bin/infection --only-covered --min-covered-msi=97
+  - ./vendor/bin/infection --min-covered-msi=97
