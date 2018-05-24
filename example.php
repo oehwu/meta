@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/src/Header.php';
+require_once __DIR__ . '/vendor/autoload.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,5 +18,6 @@ require_once __DIR__ . '/src/Header.php';
 
 <?= OEHWU\Meta\Header::getHeader() ?>
 
+<?= OEHWU\Meta\Cookie::getSnippet() ?>
 </body>
 </html>

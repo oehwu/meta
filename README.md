@@ -47,6 +47,12 @@ Normalizes and validates the given `$studentId` and returns the normalized stude
 or `null` if the student ID is not valid. 
 
 
+## Usage: Cookie
+Returns a snippet which can be used to display (and dismiss) a cookie notice.
+
+    OEHWU\Meta\Cookie::getSnippet()
+
+
 ## Usage: Header
 This class implements one public static method:
 
