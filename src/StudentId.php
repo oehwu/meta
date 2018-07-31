@@ -14,11 +14,7 @@ final class StudentId
     {
         $studentId = trim($studentId);
 
-        if (!preg_match('/^' . self::CODE_LETTER_WU . '\d{7,8}$/', $studentId)) {
-            return false;
-        }
-
-        return true;
+        return preg_match('/^' . self::CODE_LETTER_WU . '\d{7,8}$/', $studentId) === 1;
     }
 
     /**
@@ -33,7 +29,7 @@ final class StudentId
             return $studentId;
         }
 
-        if (preg_match('/^' . self::CODE_LETTER_WU . '\d{7,8}$/', $studentId)) {
+        if (preg_match('/^' . self::CODE_LETTER_WU . '\d{7,8}$/', $studentId) !== false) {
             $studentId = substr($studentId, 1);
         }
 
@@ -70,6 +66,12 @@ final class StudentId
             return $studentId;
         }
 
-        return strstr($studentId, '@', true);
+        $part = strstr($studentId, '@', true);
+
+        if ($part === false) {
+            return $studentId;
+        }
+
+        return $part;
     }
 }
