@@ -1,16 +1,17 @@
-image: php:7.1
+image: php7-1_base_ci:1.0
 
 cache:
   paths:
   - vendor/
 
 before_script:
-- bash ci/docker_install.sh
+#- bash ci/docker_install.sh
 - curl --silent --show-error https://getcomposer.org/installer | php
-- php composer.phar install > /dev/null
+- php composer.phar install --no-progress --no-suggest --no-interaction > /dev/null
 
 test:app:
   script:
-  - ./vendor/bin/phpunit --coverage-text --colors=never
-  - ./vendor/bin/composer-require-checker
-  - ./vendor/bin/phpstan analyse src/ --level 7
+  - php -d zend_extension=xdebug.so ./vendor/bin/phpunit --coverage-text --colors=never
+  - php composer.phar check-deps
+  - php composer.phar phpstan
+  - php composer.phar infection-xdebug

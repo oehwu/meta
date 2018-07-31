@@ -36,29 +36,31 @@ class Header
         }
 
         $cache = self::fetchCache();
-        if (false === $forceNewLoad && null !== $cache) {
+        if ($forceNewLoad === false && $cache !== null) {
             return $cache;
         }
 
         $c = curl_init();
 
+        if ($c === false) {
+            return null;
+        }
+
         curl_setopt($c, CURLOPT_HTTPGET, 1);
         curl_setopt($c, CURLOPT_URL, self::HEADER_URL);
         curl_setopt($c, CURLOPT_AUTOREFERER, 1);
         curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($c, CURLOPT_SSL_VERIFYHOST, 0);
-        curl_setopt($c, CURLOPT_SSL_VERIFYPEER, 0);
 
         $response = curl_exec($c);
         $header = curl_getinfo($c);
 
         curl_close($c);
 
-        if ($response === false) {
+        if ($response === false || $response === true) {
             return null;
         }
 
-        if ($header['http_code'] != 200) {
+        if ($header['http_code'] !== 200) {
             return null;
         }
 
@@ -72,7 +74,7 @@ class Header
      */
     private static function hasCurl()
     {
-        return (function_exists('curl_init')) ? true : false;
+        return function_exists('curl_init') ? true : false;
     }
 
     /**
@@ -86,17 +88,24 @@ class Header
             return null;
         }
 
-        if (filemtime($fileName) + self::CACHE_TIME < time()) {
+        if ((int)filemtime($fileName) + self::CACHE_TIME < time()) {
             self::deleteCacheFile($fileName);
 
             return null;
         }
 
-        return file_get_contents($fileName);
+        $content = file_get_contents($fileName);
+
+        if ($content === false) {
+            return null;
+        }
+
+        return $content;
     }
 
     /**
      * @param string $headerStr
+     * @return void
      */
     private static function writeCache($headerStr)
     {
@@ -107,8 +116,13 @@ class Header
         }
 
         $res = fopen($fileName, 'wb');
+
+        if ($res === false) {
+            return;
+        }
+
         fwrite($res, $headerStr);
-        fclose(($res));
+        fclose($res);
     }
 
     /**
@@ -121,6 +135,7 @@ class Header
 
     /**
      * @param string $fileName
+     * @return void
      */
     private static function deleteCacheFile($fileName)
     {
