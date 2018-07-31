@@ -18,11 +18,6 @@ final class StudentId
             return false;
         }
 
-        $studentId = substr($studentId, 1);
-        if (strlen($studentId) === 8 && !in_array($studentId[0], ['0', '1', '2', '3'], true)) {
-            return false;
-        }
-
         return true;
     }
 
