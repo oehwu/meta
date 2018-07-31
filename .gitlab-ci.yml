@@ -5,7 +5,7 @@ cache:
   - vendor/
 
 before_script:
-- bash ci/docker_install.sh
+#- bash ci/docker_install.sh
 - curl --silent --show-error https://getcomposer.org/installer | php
 - php composer.phar install --no-progress --no-suggest --no-interaction > /dev/null
 
