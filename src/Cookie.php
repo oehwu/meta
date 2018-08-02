@@ -13,6 +13,6 @@ class Cookie
 
         return '<script>' . file_get_contents($templatePath . 'js.cookie.js') . '</script>'
             . '<script>' . file_get_contents($templatePath . 'cookie.js') . '</script>'
-            . file_get_contents($templatePath . 'cookie.php');
+            . file_get_contents($templatePath . 'cookie.html');
     }
 }

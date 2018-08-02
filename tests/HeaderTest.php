@@ -13,4 +13,12 @@ class HeaderTest extends TestCase
 
         $this->assertContains('oehwu-snippet-header', $header);
     }
+
+    public function testGetCachedHeader()
+    {
+        Header::getHeader();
+        $header = Header::getHeader();
+
+        $this->assertContains('oehwu-snippet-header', $header);
+    }
 }

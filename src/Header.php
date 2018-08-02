@@ -115,6 +115,10 @@ class Header
             return;
         }
 
+        if (file_exists($fileName) && !is_writable($fileName)) {
+            return;
+        }
+
         $res = fopen($fileName, 'wb');
 
         if ($res === false) {
@@ -123,6 +127,7 @@ class Header
 
         fwrite($res, $headerStr);
         fclose($res);
+        chmod($fileName, 0666);
     }
 
     /**
