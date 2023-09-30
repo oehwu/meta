@@ -1,6 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace OEHWU\Meta;
+
+use function header;
 
 /**
  * Class CheckSSL

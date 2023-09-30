@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace OEHWUTest\Meta;
 
 use OEHWU\Meta\StudentId;
@@ -24,7 +26,7 @@ class StudentIdTest extends TestCase
     /**
      * @return array
      */
-    public function studentIdsProvider()
+    public static function studentIdsProvider()
     {
         // [studentId, ::isValid result, ::filter result, ::check result]
         return [

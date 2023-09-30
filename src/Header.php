@@ -1,6 +1,31 @@
 <?php
 
+declare(strict_types=1);
+
 namespace OEHWU\Meta;
+
+use function chmod;
+use function curl_close;
+use function curl_exec;
+use function curl_getinfo;
+use function curl_init;
+use function curl_setopt;
+use function fclose;
+use function file_exists;
+use function file_get_contents;
+use function filemtime;
+use function fopen;
+use function function_exists;
+use function fwrite;
+use function is_writable;
+use function sys_get_temp_dir;
+use function time;
+use function unlink;
+
+use const CURLOPT_AUTOREFERER;
+use const CURLOPT_HTTPGET;
+use const CURLOPT_RETURNTRANSFER;
+use const CURLOPT_URL;
 
 /**
  * Returns the OEH WU header
@@ -10,18 +35,18 @@ class Header
     /**
      * @var string URI to fetch
      */
-    const HEADER_URL = 'https://oeh-wu.at/snippets/header.html';
+    public const HEADER_URL = 'https://oeh-wu.at/snippets/header.html';
 
     /**
      * @var string filename of temp file
      */
-    const TMP_FILENAME = 'oehwu_web_header';
+    public const TMP_FILENAME = 'oehwu_web_header';
 
     /**
      * @var int cache time in seconds
      * 24 * 60 * 60; one day
      */
-    const CACHE_TIME = 86400;
+    public const CACHE_TIME = 86400;
 
     /**
      * returns the header HTML as string, or null if it fails

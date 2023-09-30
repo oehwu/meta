@@ -1,9 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace OEHWUTest\Meta;
 
 use OEHWU\Meta\Cookie;
 use PHPUnit\Framework\TestCase;
+
+use function chdir;
+use function dirname;
+use function file_get_contents;
 
 class CookieTest extends TestCase
 {

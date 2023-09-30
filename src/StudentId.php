@@ -1,10 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace OEHWU\Meta;
+
+use function preg_match;
+use function strlen;
+use function strpos;
+use function strstr;
+use function substr;
+use function trim;
 
 final class StudentId
 {
-    const CODE_LETTER_WU = 'h';
+    public const CODE_LETTER_WU = 'h';
 
     /**
      * @param string $studentId
