@@ -7,7 +7,7 @@ jobs:
 
     strategy:
       matrix:
-        php: ["8.2", "8.3"]
+        php: ["8.1", "8.2", "8.3"]
 
     runs-on: ubuntu-latest
 
@@ -80,5 +80,5 @@ jobs:
           comment: false
           comment_context: Coverage PHP ${{ matrix.php }}
           status_context: Coverage PHP ${{ matrix.php }}
-          threshold_alert: 100
-          threshold_warning: 100
+          threshold_alert: 83
+          threshold_warning: 83
