@@ -6,7 +6,7 @@ namespace OEHWU\Meta;
 
 use function file_get_contents;
 
-class Cookie
+final class Cookie
 {
     public static function getSnippet(): string
     {

@@ -11,7 +11,7 @@ use function chdir;
 use function dirname;
 use function file_get_contents;
 
-class CookieTest extends TestCase
+final class CookieTest extends TestCase
 {
     protected function setUp(): void
     {

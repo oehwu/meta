@@ -7,7 +7,7 @@ namespace OEHWUTest\Meta;
 use OEHWU\Meta\CheckSSL;
 use PHPUnit\Framework\TestCase;
 
-class CheckSSLTest extends TestCase
+final class CheckSSLTest extends TestCase
 {
     public function testNoSsl(): void
     {

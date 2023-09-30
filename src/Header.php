@@ -30,7 +30,7 @@ use const CURLOPT_URL;
 /**
  * Returns the OEH WU header
  */
-class Header
+final class Header
 {
     /**
      * @var string URI to fetch

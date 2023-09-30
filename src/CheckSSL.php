@@ -14,7 +14,7 @@ use function header;
  * The reverse proxy adds an HTTP header to allow the backend web server to determine
  * if the connection was made using https://
  */
-class CheckSSL
+final class CheckSSL
 {
     /**
      * Returns true if the X-SSL-Request HTTP header is present, thus the client accessed the ressource using https://

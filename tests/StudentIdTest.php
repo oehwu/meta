@@ -7,7 +7,7 @@ namespace OEHWUTest\Meta;
 use OEHWU\Meta\StudentId;
 use PHPUnit\Framework\TestCase;
 
-class StudentIdTest extends TestCase
+final class StudentIdTest extends TestCase
 {
     /**
      * @dataProvider studentIdsProvider
