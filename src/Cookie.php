@@ -8,10 +8,7 @@ use function file_get_contents;
 
 class Cookie
 {
-    /**
-     * @return string
-     */
-    public static function getSnippet()
+    public static function getSnippet(): string
     {
         $templatePath = __DIR__ . '/../templates/cookie/';
 

@@ -10,23 +10,23 @@ use PHPUnit\Framework\TestCase;
 class StudentIdTest extends TestCase
 {
     /**
-     * @param string      $studentId
-     * @param bool        $isValidResult
-     * @param string      $filterResult
-     * @param string|null $checkResult
      * @dataProvider studentIdsProvider
      */
-    public function testStudentIds($studentId, $isValidResult, $filterResult, $checkResult)
-    {
-        $this->assertSame($isValidResult, StudentId::isValid($studentId));
-        $this->assertSame($filterResult, StudentId::filter($studentId));
-        $this->assertSame($checkResult, StudentId::check($studentId));
+    public function testStudentIds(
+        string $studentId,
+        bool $isValidResult,
+        string $filterResult,
+        string|null $checkResult,
+    ): void {
+        self::assertSame($isValidResult, StudentId::isValid($studentId));
+        self::assertSame($filterResult, StudentId::filter($studentId));
+        self::assertSame($checkResult, StudentId::check($studentId));
     }
 
     /**
-     * @return array
+     * @return list<array{0: string, 1: bool, 2: string, 3: string|null}>
      */
-    public static function studentIdsProvider()
+    public static function studentIdsProvider(): array
     {
         // [studentId, ::isValid result, ::filter result, ::check result]
         return [

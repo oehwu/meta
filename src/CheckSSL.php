@@ -7,29 +7,23 @@ namespace OEHWU\Meta;
 use function header;
 
 /**
- * Class CheckSSL
- *
  * Simple Method to check if the connection to the client is encrypted.
  *
- * The connection to the backend web server is never encrypted, because the SSL wrapper (Pound) resides
+ * The connection to the backend web server is never encrypted, because the SSL wrapper resides
  * on the reverse proxy and encrypts/decrypts at the OEH WU border.
- * Pound adds an HTTP header to allow the backend web server to determine if the connection was made using https://
- *
- * @package OEHWU\Meta
+ * The reverse proxy adds an HTTP header to allow the backend web server to determine
+ * if the connection was made using https://
  */
 class CheckSSL
 {
     /**
      * Returns true if the X-SSL-Request HTTP header is present, thus the client accessed the ressource using https://
-     *
-     * @return bool
      */
-    public static function isSSL()
+    public static function isSSL(): bool
     {
         if (isset($_SERVER['HTTP_X_SSL_REQUEST'])) {
             return true;
         }
-
         return false;
     }
 
@@ -37,17 +31,15 @@ class CheckSSL
      * Redirects the client to HTTPS, if it's not already on HTTPS
      *
      * We don't use $_SERVER['SERVER_PORT'] because the backend server is unaware of the SSL status, thus on port 80
-     *
-     * @return void
      */
-    public static function redirect()
+    public static function redirect(): void
     {
-        if (self::isSSL() === true) {
+        if (self::isSSL()) {
             return;
         }
-        $redirect = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+        $host = $_SERVER['HTTP_HOST'] ?? '';
+        $requestUri = $_SERVER['REQUEST_URI'] ?? '';
+        $redirect = 'https://' . $host . $requestUri;
         header('Location: ' . $redirect);
-
-        return;
     }
 }

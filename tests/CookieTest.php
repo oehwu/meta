@@ -13,21 +13,21 @@ use function file_get_contents;
 
 class CookieTest extends TestCase
 {
-    public function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
         chdir(dirname(__DIR__));
     }
 
-    public function testGetSnippet()
+    public function testGetSnippet(): void
     {
         $template = './templates/cookie/';
 
         $cookie = Cookie::getSnippet();
 
-        $this->assertContains(file_get_contents($template . 'cookie.js'), $cookie);
-        $this->assertContains(file_get_contents($template . 'js.cookie.js'), $cookie);
-        $this->assertContains(file_get_contents($template . 'cookie.html'), $cookie);
+        self::assertStringContainsString((string)file_get_contents($template . 'cookie.js'), $cookie);
+        self::assertStringContainsString((string)file_get_contents($template . 'js.cookie.js'), $cookie);
+        self::assertStringContainsString((string)file_get_contents($template . 'cookie.html'), $cookie);
     }
 }
