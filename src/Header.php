@@ -1,35 +1,59 @@
 <?php
 
+declare(strict_types=1);
+
 namespace OEHWU\Meta;
+
+use function chmod;
+use function curl_close;
+use function curl_exec;
+use function curl_getinfo;
+use function curl_init;
+use function curl_setopt;
+use function fclose;
+use function file_exists;
+use function file_get_contents;
+use function filemtime;
+use function fopen;
+use function function_exists;
+use function fwrite;
+use function is_writable;
+use function sys_get_temp_dir;
+use function time;
+use function unlink;
+
+use const CURLOPT_AUTOREFERER;
+use const CURLOPT_HTTPGET;
+use const CURLOPT_RETURNTRANSFER;
+use const CURLOPT_URL;
 
 /**
  * Returns the OEH WU header
  */
-class Header
+final class Header
 {
     /**
      * @var string URI to fetch
      */
-    const HEADER_URL = 'https://oeh-wu.at/snippets/header.html';
+    private const HEADER_URL = 'https://oeh-wu.at/snippets/header.html';
 
     /**
      * @var string filename of temp file
      */
-    const TMP_FILENAME = 'oehwu_web_header';
+    private const TMP_FILENAME = 'oehwu_web_header';
 
     /**
      * @var int cache time in seconds
      * 24 * 60 * 60; one day
      */
-    const CACHE_TIME = 86400;
+    private const CACHE_TIME = 86400;
 
     /**
      * returns the header HTML as string, or null if it fails
      *
      * @param bool $forceNewLoad don't use a cached version
-     * @return null|string
      */
-    public static function getHeader($forceNewLoad = false)
+    public static function getHeader(bool $forceNewLoad = false): string|null
     {
         if (!self::hasCurl()) {
             return null;
@@ -42,16 +66,13 @@ class Header
 
         $c = curl_init();
 
-        if ($c === false) {
-            return null;
-        }
-
         curl_setopt($c, CURLOPT_HTTPGET, 1);
         curl_setopt($c, CURLOPT_URL, self::HEADER_URL);
         curl_setopt($c, CURLOPT_AUTOREFERER, 1);
         curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
 
         $response = curl_exec($c);
+        /** @var array{http_code: int, ...} $header */
         $header = curl_getinfo($c);
 
         curl_close($c);
@@ -69,18 +90,12 @@ class Header
         return $response;
     }
 
-    /**
-     * @return bool
-     */
-    private static function hasCurl()
+    private static function hasCurl(): bool
     {
-        return function_exists('curl_init') ? true : false;
+        return function_exists('curl_init');
     }
 
-    /**
-     * @return null|string
-     */
-    private static function fetchCache()
+    private static function fetchCache(): string|null
     {
         $fileName = self::getFileName();
 
@@ -103,11 +118,7 @@ class Header
         return $content;
     }
 
-    /**
-     * @param string $headerStr
-     * @return void
-     */
-    private static function writeCache($headerStr)
+    private static function writeCache(string $headerStr): void
     {
         $fileName = self::getFileName();
 
@@ -130,19 +141,12 @@ class Header
         chmod($fileName, 0666);
     }
 
-    /**
-     * @return string
-     */
-    private static function getFileName()
+    private static function getFileName(): string
     {
         return sys_get_temp_dir() . '/' . self::TMP_FILENAME;
     }
 
-    /**
-     * @param string $fileName
-     * @return void
-     */
-    private static function deleteCacheFile($fileName)
+    private static function deleteCacheFile(string $fileName): void
     {
         if (!is_writable($fileName)) {
             return;

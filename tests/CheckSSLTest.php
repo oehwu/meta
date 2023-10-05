@@ -1,37 +1,59 @@
 <?php
 
+declare(strict_types=1);
+
 namespace OEHWUTest\Meta;
 
 use OEHWU\Meta\CheckSSL;
 use PHPUnit\Framework\TestCase;
 
-class CheckSSLTest extends TestCase
+final class CheckSSLTest extends TestCase
 {
-    public function testNoSsl()
+    public function testNoSsl(): void
     {
         $check = CheckSSL::isSSL();
 
-        $this->assertFalse($check);
+        self::assertFalse($check);
     }
 
-    public function testSslReturnsTrueIfServerSettingIsPresent()
+    public function testSslReturnsTrueIfServerSettingIsPresent(): void
     {
         $this->setServerVariable();
         $check = CheckSSL::isSSL();
 
-        $this->assertTrue($check);
+        self::assertTrue($check);
     }
 
-    public function testDoesNotRedirectWithSsl()
+    /**
+     * This test is just to add line coverage. We can't check HTTP headers in CLI SAPI without the Xdebug extension.
+     */
+    public function testDoesNotRedirectWithSsl(): void
     {
         $this->setServerVariable();
-        $return = CheckSSL::redirect();
 
-        $this->assertNull($return);
+        CheckSSL::redirect();
+
+        self::assertTrue(CheckSSL::isSSL());
     }
 
-    private function setServerVariable()
+    /**
+     * This test is just to add line coverage. We can't check HTTP headers in CLI SAPI without the Xdebug extension.
+     */
+    public function testRedirectsToHttps(): void
+    {
+        CheckSSL::redirect();
+
+        $this->expectNotToPerformAssertions();
+    }
+
+    private function setServerVariable(): void
     {
         $_SERVER['HTTP_X_SSL_REQUEST'] = 1;
+    }
+
+    protected function tearDown(): void
+    {
+        parent::tearDown();
+        unset($_SERVER['HTTP_X_SSL_REQUEST']);
     }
 }

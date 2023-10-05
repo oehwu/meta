@@ -1,27 +1,28 @@
 <?php
 
+declare(strict_types=1);
+
 namespace OEHWU\Meta;
+
+use function preg_match;
+use function str_contains;
+use function strlen;
+use function strstr;
+use function substr;
+use function trim;
 
 final class StudentId
 {
-    const CODE_LETTER_WU = 'h';
+    private const CODE_LETTER_WU = 'h';
 
-    /**
-     * @param string $studentId
-     * @return bool
-     */
-    public static function isValid($studentId)
+    public static function isValid(string $studentId): bool
     {
         $studentId = trim($studentId);
 
         return preg_match('/^' . self::CODE_LETTER_WU . '\d{7,8}$/', $studentId) === 1;
     }
 
-    /**
-     * @param string $studentId
-     * @return string
-     */
-    public static function filter($studentId)
+    public static function filter(string $studentId): string
     {
         $studentId = self::extractFromEmail($studentId);
 
@@ -41,11 +42,7 @@ final class StudentId
         return self::CODE_LETTER_WU . $studentId;
     }
 
-    /**
-     * @param string $studentId
-     * @return null|string
-     */
-    public static function check($studentId)
+    public static function check(string $studentId): string|null
     {
         $studentId = self::extractFromEmail($studentId);
 
@@ -56,13 +53,9 @@ final class StudentId
         return self::filter($studentId);
     }
 
-    /**
-     * @param string $studentId
-     * @return string
-     */
-    private static function extractFromEmail($studentId)
+    private static function extractFromEmail(string $studentId): string
     {
-        if (strpos($studentId, '@') === false) {
+        if (!str_contains($studentId, '@')) {
             return $studentId;
         }
 

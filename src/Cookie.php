@@ -1,13 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace OEHWU\Meta;
 
-class Cookie
+use function file_get_contents;
+
+final class Cookie
 {
-    /**
-     * @return string
-     */
-    public static function getSnippet()
+    public static function getSnippet(): string
     {
         $templatePath = __DIR__ . '/../templates/cookie/';
 
